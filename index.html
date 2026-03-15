@@ -649,7 +649,7 @@
         for (let i = 0; i < PHOTO_COUNT; i++) {
             const geometry = new THREE.PlaneGeometry(1.4, 2.0);
             const material = new THREE.MeshBasicMaterial({
-                map: textureLoader.load(`images/${i + 1}中.JPEG`),
+                map: textureLoader.load(`images/${i + 1}中.jpeg`),
                 side: THREE.DoubleSide, transparent: true, opacity: 0.9
             });
             const mesh = new THREE.Mesh(geometry, material);
