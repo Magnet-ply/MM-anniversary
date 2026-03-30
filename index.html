@@ -8,6 +8,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,300&display=swap" rel="stylesheet">
     
@@ -59,7 +63,6 @@
         .countdown-val { font-size: 32px; font-weight: bold; color: #333; }
         .countdown-unit { font-size: 11px; color: #888; text-transform: uppercase; letter-spacing: 0.2em; margin-top: 5px; }
 
-        /* Loading 界面的音乐播放按钮样式 */
         .loading-music-btn {
             margin-top: 25px;
             padding: 10px 24px;
@@ -80,7 +83,6 @@
         .loading-music-btn.playing { background: #000; color: #fff; border-color: #000; }
 
         .progress-wrapper-fixed { position: fixed; bottom: 60px; width: 75%; max-width: 800px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: flex-start; z-index: 101; }
-        .progress-text { font-size: 12px; color: #555; margin-bottom: 8px; font-weight: bold; letter-spacing: 0.1em; }
         .progress-bar-container { position: relative; width: 100%; margin-top: 40px; }
         .progress-rail { height: 16px; width: 100%; background: rgba(0, 0, 0, 0.08); box-shadow: inset 0 2px 5px rgba(0,0,0,0.1); position: relative; border-radius: 8px; overflow: hidden; }
         .progress-bar { height: 100%; width: 0%; background: linear-gradient(90deg, #4da3ff, #007bff, #00d2ff); border-radius: 8px; transition: width 0.1s linear; box-shadow: 0 0 10px rgba(0, 123, 255, 0.4); }
@@ -303,7 +305,6 @@
     </div>
 
     <div id="page-constellation">
-        
         <div class="calendar-widget">
             <div class="calendar-dog-container calendar-dog-container-left">
                 <img src="image5.png" class="calendar-dog" alt="日历左侧白狗">
@@ -334,46 +335,31 @@
             
             <div class="accordion-item">
                 <div class="accordion-header" onclick="toggleAccordion(this)"><span>2025.4 和 2025.8 上海</span><i data-lucide="chevron-down" class="acc-icon"></i></div>
-                <div class="accordion-content">4月，我决定去上海找你，我们一起看了赵丽颖的电影，你给我拍了好看的照片，同时我也觉得你很好看。
-                    8月，这是第一次见证不一样的你，看着你忙碌、喜悦的身影，我会觉得原来参加这个并不无聊，我喜欢那样的你，热爱、一直充满着活力对自己感兴趣的任何事物。</div>
+                <div class="accordion-content">4月，我决定去上海找你，我们一起看了赵丽颖的电影，你给我拍了好看的照片，同时我也觉得你很好看。8月，这是第一次见证不一样的你，看着你忙碌、喜悦的身影，我会觉得原来参加这个并不无聊，我喜欢那样的你，热爱、一直充满着活力对自己感兴趣的任何事物。</div>
             </div>
             <div class="accordion-item">
                 <div class="accordion-header" onclick="toggleAccordion(this)"><span>2025.5 扬州</span><i data-lucide="chevron-down" class="acc-icon"></i></div>
-                <div class="accordion-content">这个月，是你来找我，也是我们确定关系的一个月。我们依旧吃了很多的食物，和你一起拍了很多的视频，
-                    对于我而言，这是一个很新的领域，我讨厌麻烦，和你一起去的时候这种感觉会少很多，所以每次重拍，对我而言也不是折磨。
-                </div>
+                <div class="accordion-content">这个月，是你来找我，也是我们确定关系的一个月。我们依旧吃了很多的食物，和你一起拍了很多的视频，对于我而言，这是一个很新的领域，我讨厌麻烦，和你一起去的时候这种感觉会少很多，所以每次重拍，对我而言也不是折磨。</div>
             </div>
             <div class="accordion-item">
                 <div class="accordion-header" onclick="toggleAccordion(this)"><span>2025.6 苏州</span><i data-lucide="chevron-down" class="acc-icon"></i></div>
-                <div class="accordion-content">苏州，我们吃了可丽饼，但并不好吃，喝了一杯超级好喝的泰式咸法酪，我们对彼此更加
-                    亲近了一点，呆的时间不长，但我很喜欢。
-                </div>
+                <div class="accordion-content">苏州，我们吃了可丽饼，但并不好吃，喝了一杯超级好喝的泰式咸法酪，我们对彼此更加亲近了一点，呆的时间不长，但我很喜欢。</div>
             </div>
             <div class="accordion-item">
                 <div class="accordion-header" onclick="toggleAccordion(this)"><span>2025.7 武汉</span><i data-lucide="chevron-down" class="acc-icon"></i></div>
-                <div class="accordion-content">在武汉，我带你吃了很多小吃，你尤其喜欢吃香酥饼，嗯，其中一天早上，我下去买早点，也让我买这个，嗯，我喜欢照顾你
-                    我并不会觉得不耐烦，所以，老婆酱，你可以对我很依赖。
-                </div>
+                <div class="accordion-content">在武汉，我带你吃了很多小吃，你尤其喜欢吃香酥饼，嗯，其中一天早上，我下去买早点，也让我买这个，嗯，我喜欢照顾你我并不会觉得不耐烦，所以，老婆酱，你可以对我很依赖。</div>
             </div>
             <div class="accordion-item">
                 <div class="accordion-header" onclick="toggleAccordion(this)"><span>2026.12 天津</span><i data-lucide="chevron-down" class="acc-icon"></i></div>
-                <div class="accordion-content">这是我们回国后的第一次见面，我们吃了超级好吃的轰炸大鱿鱼，吃了很多没吃过的，红烧牛窝骨我也很喜欢。
-                    我们走了很多的路，去吃天津的特色早点，吃完，我们也散步回酒店，嗯，我很喜欢那些稀疏平常的时刻，总让我觉得很幸福。
-                </div>
+                <div class="accordion-content">这是我们回国后的第一次见面，我们吃了超级好吃的轰炸大鱿鱼，吃了很多没吃过的，红烧牛窝骨我也很喜欢。我们走了很多的路，去吃天津的特色早点，吃完，我们也散步回酒店，嗯，我很喜欢那些稀疏平常的时刻，总让我觉得很幸福。</div>
             </div>
             <div class="accordion-item">
                 <div class="accordion-header" onclick="toggleAccordion(this)"><span>2026.12 北京</span><i data-lucide="chevron-down" class="acc-icon"></i></div>
-                <div class="accordion-content">很遗憾的是，我们没有对那些景点预约，那下次再去北京，要去故宫拍好看的照片。北京，我们吃了
-                    好吃的烤鸭，好喝的酸奶，走了很多小胡同，晚上一起走路去吃涮肉，写到这里，宝宝，我好想你....
-                </div>
+                <div class="accordion-content">很遗憾的是，我们没有对那些景点预约，那下次再去北京，要去故宫拍好看的照片。北京，我们吃了好吃的烤鸭，好喝的酸奶，走了很多小胡同，晚上一起走路去吃涮肉，写到这里，宝宝，我好想你....</div>
             </div>
             <div class="accordion-item">
                 <div class="accordion-header" onclick="toggleAccordion(this)"><span>2026.1 广州</span><i data-lucide="chevron-down" class="acc-icon"></i></div>
-                <div class="accordion-content">我们去了顺德，吃了早茶，流心菠萝包，尝试了生腌，但也有踩雷，无意之间，我们碰到了
-                    别人排队的本土奶茶，很不错，嗯，我想说的是，你让我觉得计划之外的事也同样美好。我生病输液，我说让你不要来，我直接输完就回去，
-                    你还是来了，嗯，很抱歉，当时对你的第一反应是，你怎么来了，后来你说，你只是想我了，想陪着我，嗯，你总是让我觉得，我以为麻烦的事，
-                    在你眼里是不一样的，是对我的在意，亲亲老婆酱，谢谢你。
-                </div>
+                <div class="accordion-content">我们去了顺德，吃了早茶，流心菠萝包，尝试了生腌，但也有踩雷，无意之间，我们碰到了别人排队的本土奶茶，很不错，嗯，我想说的是，你让我觉得计划之外的事也同样美好。我生病输液，我说让你不要来，我直接输完就回去，你还是来了，嗯，很抱歉，当时对你的第一反应是，你怎么来了，后来你说，你只是想我了，想陪着我，嗯，你总是让我觉得，我以为麻烦的事，在你眼里是不一样的，是对我的在意，亲亲老婆酱，谢谢你。</div>
             </div>
         </div>
 
@@ -394,7 +380,7 @@
             </svg>
         </div>
 
-        <button id="enter-3d-btn">我们的相册</button>
+        <button id="enter-3d-btn">开启全景感应相册</button>
         <video src="生成小狗贴贴视频.mp4" id="dogs-hug-video" class="dogs-hug-video" autoplay loop muted playsinline disablePictureInPicture></video>
 
     </div>
@@ -418,11 +404,16 @@
             <div class="w-10 h-[1px] bg-gray-200 mx-auto mt-2"></div>
         </div>
         <div class="text-center pb-10">
-            <p class="text-[9px] text-gray-300 uppercase tracking-[0.6em]">Tap to focus / Click background to reset</p>
+            <p class="text-[9px] text-gray-300 uppercase tracking-[0.6em]">Tap to focus / Try Gestures: Spread, Gather, or Move Hand</p>
         </div>
     </div>
     
     <div id="canvas-container"></div>
+    
+    <div id="camera-container" style="position: fixed; bottom: 30px; left: 30px; z-index: 9999; opacity: 0; pointer-events: none; transition: opacity 1s; display: flex; flex-direction: column; align-items: center;">
+        <video id="input_video" style="width: 140px; height: 105px; border-radius: 12px; border: 2px solid rgba(255,255,255,0.8); box-shadow: 0 10px 20px rgba(0,0,0,0.2); transform: scaleX(-1); object-fit: cover;" autoplay playsinline></video>
+        <div id="gesture-status" style="color: #333; font-size: 11px; font-weight: bold; margin-top: 8px; background: rgba(255,255,255,0.8); backdrop-filter: blur(4px); border-radius: 10px; padding: 4px 12px; letter-spacing: 0.1em;">等待摄像头权限...</div>
+    </div>
 
     <button onclick="toggleMusic()" class="fixed top-8 right-8 z-50 p-3 border border-gray-100 rounded-full bg-white/80 transition-all opacity-0 pointer-events-none" id="music-btn">
         <i id="music-icon" data-lucide="music" class="w-4 h-4"></i>
@@ -540,7 +531,83 @@
             if (e.target.id === 'city-modal') closeModal();
         });
 
-        // 🌟 点击“开启全景相册”按钮逻辑
+        // ================= 手势识别核心逻辑 =================
+        let currentGesture = 'normal'; // 'normal', 'spread', 'gather'
+        let isCameraInitialized = false;
+        let cameraInstance = null;
+        let targetCameraX = 0; // 新增：用来记录手控制的相机水平偏移目标
+
+        function initMediaPipe() {
+            if (isCameraInitialized) return;
+            const videoElement = document.getElementById('input_video');
+            const statusElement = document.getElementById('gesture-status');
+            statusElement.innerText = "正在加载模型...";
+
+            const hands = new Hands({locateFile: (file) => {
+                return `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`;
+            }});
+            
+            hands.setOptions({
+                maxNumHands: 1,
+                modelComplexity: 1,
+                minDetectionConfidence: 0.7,
+                minTrackingConfidence: 0.7
+            });
+
+            hands.onResults((results) => {
+                if (results.multiHandLandmarks && results.multiHandLandmarks.length > 0) {
+                    const landmarks = results.multiHandLandmarks[0];
+                    const getDist = (p1, p2) => Math.hypot(p1.x - p2.x, p1.y - p2.y);
+                    
+                    // 新增：跟随移动逻辑
+                    const handX = landmarks[9].x; 
+                    // 控制相机的横向移动。根据镜像反馈，减去0.5让中心为0，乘以 25 控制灵敏度。
+                    targetCameraX = (handX - 0.5) * 25; 
+
+                    let openCount = 0;
+                    const tips = [8, 12, 16, 20];
+                    const pips = [6, 10, 14, 18];
+                    
+                    for(let i=0; i<4; i++) {
+                        if (getDist(landmarks[tips[i]], landmarks[0]) > getDist(landmarks[pips[i]], landmarks[0])) {
+                            openCount++;
+                        }
+                    }
+                    
+                    if (openCount >= 3) {
+                        currentGesture = 'spread';
+                        statusElement.innerText = "✋ 张开 (扩散)";
+                    } else if (openCount <= 1) {
+                        currentGesture = 'gather';
+                        statusElement.innerText = "✊ 握拳 (聚拢)";
+                    } else {
+                        currentGesture = 'normal';
+                        statusElement.innerText = "🖐️ 跟随移动";
+                    }
+                } else {
+                    currentGesture = 'normal';
+                    targetCameraX = 0; // 手移出屏幕，相机自动平滑归位到正中心
+                    statusElement.innerText = "未检测到手势";
+                }
+            });
+
+            cameraInstance = new Camera(videoElement, {
+                onFrame: async () => {
+                    await hands.send({image: videoElement});
+                },
+                width: 320,
+                height: 240
+            });
+            
+            cameraInstance.start().then(() => {
+                isCameraInitialized = true;
+                statusElement.innerText = "准备就绪";
+            }).catch(err => {
+                statusElement.innerText = "无法获取摄像头权限";
+                console.error(err);
+            });
+        }
+
         document.getElementById('enter-3d-btn').addEventListener('click', () => {
             document.getElementById('page-constellation').classList.remove('active');
             
@@ -558,34 +625,34 @@
 
             document.getElementById('page-gallery-ui').style.opacity = '1';
             
-            // 显示音乐按钮并恢复点击
+            const camContainer = document.getElementById('camera-container');
+            camContainer.style.opacity = '1';
+            initMediaPipe();
+
             const musicBtn = document.getElementById('music-btn');
             if(musicBtn) { musicBtn.style.opacity = '1'; musicBtn.style.pointerEvents = 'auto'; }
 
             if (!isPlaying) toggleMusic();
         });
 
-        // 🌟 新增：返回首页（星轨）逻辑
         function returnToHome() {
-            // 1. 隐藏 3D 画布和相关 UI
             const canvasContainer = document.getElementById('canvas-container');
             canvasContainer.style.opacity = '0';
             canvasContainer.style.pointerEvents = 'none';
 
             document.getElementById('page-gallery-ui').style.opacity = '0';
             
+            document.getElementById('camera-container').style.opacity = '0';
+            
             const musicBtn = document.getElementById('music-btn');
             if(musicBtn) { musicBtn.style.opacity = '0'; musicBtn.style.pointerEvents = 'none'; }
 
-            // 2. 重新显示星轨页面
             const constellationPage = document.getElementById('page-constellation');
             constellationPage.style.display = 'flex';
             
-            // 稍作延迟，确保 display:flex 生效后再触发淡入动画
             setTimeout(() => {
                 constellationPage.classList.add('active');
                 
-                // 恢复星轨页面的元素
                 const dogVideo = document.getElementById('dogs-hug-video');
                 if (dogVideo) dogVideo.style.opacity = '1';
                 
@@ -688,15 +755,35 @@
         function animate() {
             requestAnimationFrame(animate);
             const time = Date.now() * 0.001;
+            
+            // 新增：平滑移动相机
+            camera.position.x += (targetCameraX - camera.position.x) * 0.05;
+            
             fragments.forEach(f => {
                 if (f.userData.isFocused && f.targetPos) {
                     f.position.lerp(f.targetPos, 0.1);
                     f.quaternion.slerp(new THREE.Quaternion().setFromEuler(f.targetRot), 0.1);
                 } else {
-                    const tX = f.userData.originalPos.x + Math.sin(time + f.userData.floatSpeed * 1000) * 0.5;
-                    const tY = f.userData.originalPos.y + Math.cos(time + f.userData.floatSpeed * 1000) * 0.5;
-                    f.position.lerp(new THREE.Vector3(tX, tY, f.userData.originalPos.z), 0.05);
-                    f.rotation.x += f.userData.floatSpeed * 0.2; f.rotation.y += f.userData.floatSpeed * 0.3;
+                    let targetX = f.userData.originalPos.x;
+                    let targetY = f.userData.originalPos.y;
+                    let targetZ = f.userData.originalPos.z;
+
+                    if (currentGesture === 'spread') {
+                        targetX *= 3.5;
+                        targetY *= 3.5;
+                        targetZ *= 2.5;
+                    } else if (currentGesture === 'gather') {
+                        targetX *= 0.15;
+                        targetY *= 0.15;
+                        targetZ *= 0.15;
+                    }
+
+                    const finalX = targetX + Math.sin(time + f.userData.floatSpeed * 1000) * 0.5;
+                    const finalY = targetY + Math.cos(time + f.userData.floatSpeed * 1000) * 0.5;
+                    
+                    f.position.lerp(new THREE.Vector3(finalX, finalY, targetZ), 0.05);
+                    f.rotation.x += f.userData.floatSpeed * 0.2; 
+                    f.rotation.y += f.userData.floatSpeed * 0.3;
                 }
             });
             renderer.render(scene, camera);
